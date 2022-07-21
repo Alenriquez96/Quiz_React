@@ -41,6 +41,10 @@ const Main = () => {
         <Questions reset={resetAnswers} aciertos={correctAnswers} crt={currentQuestion} preg={questions[currentQuestion]} btn={handleClickNumberQuestion} correct={handleCorrectAnswers}/>
       </main>
     ) 
+  } else {
+    return(
+        <div className='spinner'></div>
+    )
   }
 };
 
