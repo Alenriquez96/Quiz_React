@@ -17,6 +17,12 @@ body
   font-family: 'Bodoni Moda', serif;
 }
 
+header{
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+}
 
 main    
 {
@@ -136,6 +142,22 @@ input[type=submit]{
 
 }
 
+input[type=text]{
+  width: 430px;
+  color: #ffffff;
+  background-color: rgb(211, 129, 35);
+  border-radius: 15px;
+  display: flex;
+  padding: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  border: 5px solid #234668;
+}
+
+body > div.MuiDialog-root.MuiModal-root.css-zw3mfo-MuiModal-root-MuiDialog-root > div.MuiDialog-container.MuiDialog-scrollPaper.css-hz1bth-MuiDialog-container > div{
+  border-radius: 15px;  
+}
+
 button{
   width: 90px;
   color: #ffffff;
@@ -182,4 +204,8 @@ button{
 .nav
 {
   font-size: 1rem;
+}
+
+#h4userName{
+  font-size: 20px;
 }

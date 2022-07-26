@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useSelector } from "react-redux";
 
 const Questions = (props) => {
   const questions = props.preg;
@@ -9,6 +10,8 @@ const Questions = (props) => {
   const reset = props.reset;
 
   const [numebr, setnumebr] = useState(0);
+
+  const users = useSelector(state=>state.users);
 
   let mixedQuestions = [...questions.incorrect_answers,questions.correct_answer];
 
@@ -21,6 +24,7 @@ const Questions = (props) => {
     setnumebr(numebr+1)
   }
 
+  console.log(users);
   
   return (
     <form onSubmit={handleSubmit} className='question-section'>
@@ -40,11 +44,12 @@ const Questions = (props) => {
           {mixedQuestions.map((q,i)=>
             <>
               <input id={i} type="radio" name="question" key={i} value={q}/>
-              <label htmlFor={i}>{q}</label>
+              <label htmlFor={i} key={i+1}>{q}</label>
             </>
           )}
         </div>
         <input type="submit" />
+        {users.length!=0?<h4 id="h4userName">Currently playing: {users[users.length-1]}</h4>:""}
       </div>}
     </form>
   )
