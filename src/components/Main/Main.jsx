@@ -11,6 +11,7 @@ const Main = () => {
     async function getQuestions() {
       let res = await axios.get("https://opentdb.com/api.php?amount=10");
       let data = res.data;
+      console.log(data);
       setQuestions(data.results);
     }
     getQuestions();
