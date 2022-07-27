@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { useDispatch, useSelector } from "react-redux";
 

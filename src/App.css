@@ -159,6 +159,7 @@ body > div.MuiDialog-root.MuiModal-root.css-zw3mfo-MuiModal-root-MuiDialog-root 
   border-radius: 15px;  
 }
 
+
 button{
   width: 90px;
   color: #ffffff;
@@ -225,4 +226,11 @@ header>button:hover, header>div>button:hover{
 
 footer{
   bottom: 0;
+  color: white;
+}
+
+li{
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px;
 }

@@ -6,6 +6,7 @@ const Main = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [fetch, setFetch] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -13,9 +14,10 @@ const Main = () => {
       let res = await axios.get("https://opentdb.com/api.php?amount=10");
       let data = res.data;
       setQuestions(data.results);
+      setFetch(false);
     }
     getQuestions();
-  }, []);
+  }, [fetch]);
 
   let handleClickNumberQuestion = () => {
     if (currentQuestion<=10) {
@@ -36,11 +38,14 @@ const Main = () => {
   const users = useSelector(state=>state.users);
   const loggedUser = useSelector(state=>state.user);
   let resetAnswers = () =>{
-  
-    let newUsers = users.map(user=>user.user==loggedUser?user.puntuacion =correctAnswers: user);
+    let newUsers = users.map(user=>
+      user.user==loggedUser?
+      Object.assign(user, {score: correctAnswers}):
+       user);
 
     setCorrectAnswers(0);
     setCurrentQuestion(0);
+    setFetch(true);
     dispatch({
       type: "UPDATE",
       payload: newUsers
@@ -58,13 +63,8 @@ const Main = () => {
       :
       <Questions crt={currentQuestion} preg={questions[currentQuestion]} btn={handleClickNumberQuestion} correct={handleCorrectAnswers}/>
       }
-        
       </main>
     ) 
-  } else {
-    return(
-        <div className='spinner'></div>
-    )
   }
 };
 

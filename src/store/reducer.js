@@ -4,7 +4,8 @@ import { createStore } from "redux";
 const initialState = {
     users : [],
     user: "",
-    isLoggedIn : false
+    isLoggedIn : false,
+    isLoading: true
 }
 
 const reducer = (state = initialState, action) => {
@@ -34,6 +35,12 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 users: action.payload
+            }
+        
+        case "LOADING":
+            return{
+                ...state,
+                isLoading: false
             }
         
         default :
