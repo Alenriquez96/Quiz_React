@@ -1,27 +1,23 @@
 import React from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Login from "./Login";
+import Register from "./Register";
 
 const Header = () => {
 
   const dispatch = useDispatch();
-
 
   const logout = () =>{
     dispatch({
       type: "LOGOUT",
     })
   }
-  const users = useSelector(state=>state.users);
-
 
   return (
     <header>
-        {users.length==0?
+        <Register/>
         <Login/>
-        :
         <button onClick={logout}>Logout</button>
-        }
     </header>
   )
 };

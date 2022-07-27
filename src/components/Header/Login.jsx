@@ -9,27 +9,33 @@ const Login = () => {
 
 
     const dispatch = useDispatch();
+    const users = useSelector(state=>state.users);
 
     const login = ()=>{
+      const payload = users.find(user=>user.user === userName)
+      if (payload) {
         dispatch({
           type: "LOGIN",
-          payload : userName
+          payload: userName
         })
+      } else {
+        alert("wrong credentials");
       }
+    }
+      
 
-      const users = useSelector(state=>state.users);
-      const logged = useSelector(state=>state.isLoggedIn);
       
   return (
     <div>
         <button onClick={()=>setOpen(true)}>Login</button>
         <Dialog onClose={()=>setOpen(false)} open={open}>
-        <form action="" onSubmit={(e)=>{
-            e.preventDefault()
-            login();
-            }}>
-            <input type="text" name="username" value={userName} placeholder="Introduce your username" onChange={(e)=>setUserName(e.target.value)}/>
-        </form>
+          <form action="" onSubmit={(e)=>{
+              e.preventDefault()
+              login();
+              setOpen(false);
+              }}>
+              <input type="text" name="username" value={userName} placeholder="Introduce your username" onChange={(e)=>setUserName(e.target.value)}/>
+          </form>
         </Dialog>  
     </div>  
   )

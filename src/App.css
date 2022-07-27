@@ -15,6 +15,7 @@ body
   align-items: center;
   min-height: 100vh;
   font-family: 'Bodoni Moda', serif;
+  margin: 0S;
 }
 
 header{
@@ -129,7 +130,7 @@ label:focus {
 }
 
 input[type=submit]{
-  width: 430px;
+  width: 430px !important;
   color: #ffffff;
   background-color: rgb(211, 129, 35);
   border-radius: 15px;
@@ -142,7 +143,7 @@ input[type=submit]{
 
 }
 
-input[type=text]{
+input[type=text], input[type=password]{
   width: 430px;
   color: #ffffff;
   background-color: rgb(211, 129, 35);
@@ -201,11 +202,27 @@ button{
 }
 
 
-.nav
-{
-  font-size: 1rem;
+header>button, header>div>button{
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 20px;
+  font-family: 'Bodoni Moda', serif;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 0;
+  height: 100%;
+}
+
+header>button:hover, header>div>button:hover{
+  background-color: rgb(15, 15, 90);
 }
 
 #h4userName{
   font-size: 20px;
+}
+
+footer{
+  bottom: 0;
 }
