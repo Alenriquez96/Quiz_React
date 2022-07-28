@@ -12,7 +12,7 @@ function App() {
     type: "LOADING"
   })
   return (
-    isLoading==true?
+    isLoading===true?
       <div className='spinner'></div>
     :
     <div className="App">

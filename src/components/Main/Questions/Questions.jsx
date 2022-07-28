@@ -40,7 +40,7 @@ const Questions = (props) => {
           )}
         </div>
         <input type="submit" />
-        {user!=""?<h4 id="h4userName">Currently playing: {user}</h4>:""}
+        {user!==""?<h4 style={{margin: "10px"}} id="h4userName">Currently playing: {user}</h4>:""}
       </div>
     </form>
   )

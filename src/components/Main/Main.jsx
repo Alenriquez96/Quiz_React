@@ -33,23 +33,32 @@ const Main = () => {
     setCorrectAnswers(correctAnswers+1)
   }
 
+  const handleSaveResult = ()=>{
+    //------------Esta es otra forma--------//
+    // let newUser = users.findIndex(user=>user.user== loggedUser);
+    // users[newUser].score == correctAnswers;
+
+    let newUsers = users.map(user=>
+      user.user===loggedUser?
+      Object.assign(user, {score: correctAnswers}):
+       user);
+
+    dispatch({
+      type: "UPDATE",
+      payload: newUsers
+    })
+
+    alert("Score saved")  
+  }
+
 
 
   const users = useSelector(state=>state.users);
   const loggedUser = useSelector(state=>state.user);
   let resetAnswers = () =>{
-    let newUsers = users.map(user=>
-      user.user==loggedUser?
-      Object.assign(user, {score: correctAnswers}):
-       user);
-
     setCorrectAnswers(0);
     setCurrentQuestion(0);
     setFetch(true);
-    dispatch({
-      type: "UPDATE",
-      payload: newUsers
-    })
   }
 
   if (questions.length!==0) {
@@ -57,9 +66,10 @@ const Main = () => {
       <main>
         {currentQuestion>9?
         <div className='score-section'>
-        <h4>Has acertado {correctAnswers}</h4>
-        <button onClick={resetAnswers}>Reintentar</button>
-      </div>
+          <h4>You have {correctAnswers} questions right!</h4>
+          <button style={{margin:"10px"}} onClick={handleSaveResult}>Save results</button>
+          <button onClick={resetAnswers}>Reintentar</button>
+        </div>
       :
       <Questions crt={currentQuestion} preg={questions[currentQuestion]} btn={handleClickNumberQuestion} correct={handleCorrectAnswers}/>
       }

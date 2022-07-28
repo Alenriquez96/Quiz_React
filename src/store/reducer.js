@@ -1,4 +1,9 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
+import logger from "redux-logger";
+
+
+
 
 
 const initialState = {
@@ -48,4 +53,6 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export default createStore(reducer)
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(logger)));
+
+export default store
