@@ -10,7 +10,8 @@ const initialState = {
     users : [],
     user: "",
     isLoggedIn : false,
-    isLoading: true
+    isLoading: true,
+    isLoadingFetch: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -46,6 +47,12 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 isLoading: false
+            }
+        
+        case "LOADINGFETCH":
+            return{
+                ...state,
+                isLoadingFetch: action.payload
             }
         
         default :

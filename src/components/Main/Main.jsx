@@ -7,6 +7,7 @@ const Main = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [fetch, setFetch] = useState(false);
+  const isLoadingFetch = useSelector(state=>state.isLoadingFetch);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,6 +16,10 @@ const Main = () => {
       let data = res.data;
       setQuestions(data.results);
       setFetch(false);
+      dispatch({
+        type: "LOADINGFETCH",
+        payload: false
+      })
     }
     getQuestions();
   }, [fetch]);
@@ -59,22 +64,30 @@ const Main = () => {
     setCorrectAnswers(0);
     setCurrentQuestion(0);
     setFetch(true);
+    dispatch({
+      type: "LOADINGFETCH",
+      payload : true
+    })
   }
 
-  if (questions.length!==0) {
-    return (
-      <main>
-        {currentQuestion>9?
-        <div className='score-section'>
-          <h4>You have {correctAnswers} questions right!</h4>
-          <button style={{margin:"10px"}} onClick={handleSaveResult}>Save results</button>
-          <button onClick={resetAnswers}>Reintentar</button>
-        </div>
-      :
-      <Questions crt={currentQuestion} preg={questions[currentQuestion]} btn={handleClickNumberQuestion} correct={handleCorrectAnswers}/>
-      }
-      </main>
-    ) 
+  if (isLoadingFetch===true) {
+    <main className='spinner'></main>
+  } else {
+    if (questions.length!==0) {
+      return (
+        <main>
+          {currentQuestion>9?
+          <div className='score-section'>
+            <h4>You have {correctAnswers} questions right!</h4>
+            <button style={{margin:"10px"}} onClick={handleSaveResult}>Save results</button>
+            <button onClick={resetAnswers}>Reintentar</button>
+          </div>
+        :
+        <Questions crt={currentQuestion} preg={questions[currentQuestion]} btn={handleClickNumberQuestion} correct={handleCorrectAnswers}/>
+        }
+        </main>
+      ) 
+    }
   }
 };
 

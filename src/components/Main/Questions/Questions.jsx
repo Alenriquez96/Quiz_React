@@ -11,7 +11,9 @@ const Questions = (props) => {
 
   const user = useSelector(state=>state.user);
 
-  let mixedQuestions = [...questions.incorrect_answers,questions.correct_answer];
+  let mixQuest = [...questions.incorrect_answers,questions.correct_answer];
+
+  let mixedQuestions = mixQuest.sort( () => .5 - Math.random() );
 
   const handleSubmit = (e) =>{
     e.preventDefault();
