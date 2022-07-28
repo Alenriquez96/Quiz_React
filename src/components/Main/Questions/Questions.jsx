@@ -13,7 +13,7 @@ const Questions = (props) => {
 
   let mixQuest = [...questions.incorrect_answers,questions.correct_answer];
 
-  let mixedQuestions = mixQuest.sort( () => .5 - Math.random() );
+  let mixedQuestions = mixQuest.sort( () => .5 - Math.random());
 
   const handleSubmit = (e) =>{
     e.preventDefault();
